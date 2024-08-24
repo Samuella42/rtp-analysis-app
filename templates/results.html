@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTP Değerleri Analizi Sonuçları</title>
+</head>
+<body>
+    <h1>RTP Değerleri Analizi Sonuçları</h1>
+    <p>Ortalama RTP: {{ analysis_result['ortalama_rtp'] }}</p>
+    <p>Standart Sapma RTP: {{ analysis_result['standart_sapma_rtp'] }}</p>
+    <p>En Yüksek RTP: {{ analysis_result['en_yuksek_rtp'] }}</p>
+    <p>En Düşük RTP: {{ analysis_result['en_dusuk_rtp'] }}</p>
+    <p>{{ analysis_result['t_test_result'] }}</p>
+    <h2>Grafikler</h2>
+    <img src="data:image/png;base64,{{ analysis_result['hist_b64'] }}" alt="Histogram">
+    <img src="data:image/png;base64,{{ analysis_result['box_b64'] }}" alt="Kutu Grafiği">
+    <img src="data:image/png;base64,{{ analysis_result['kde_b64'] }}" alt="Yoğunluk Grafiği">
+    <h2>Filtrelenmiş Veri</h2>
+    <table>
+        <tr>
+            <th>Oyun İsmi</th>
+            <th>RTP Değeri</th>
+        </tr>
+        {% for index, row in analysis_result['filtrelenmis_veri'].iterrows() %}
+        <tr>
+            <td>{{ row['Oyun İsmi'] }}</td>
+            <td>{{ row['RTP Değeri'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Başka Analiz Yap</a>
+</body>
+</html>
