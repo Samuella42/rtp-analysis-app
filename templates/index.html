@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTP Değerleri Analizi</title>
+</head>
+<body>
+    <h1>RTP Değerleri Analizi</h1>
+    <form method="POST">
+        <div id="input_container">
+            <div class="input_row">
+                <input type="text" name="game_name" placeholder="Oyun İsmi" required>
+                <input type="number" step="0.01" name="rtp_value" placeholder="RTP Değeri" required>
+            </div>
+        </div>
+        <button type="button" id="add_input">Başka Oyun Ekle</button>
+        <button type="submit">Analiz Et</button>
+    </form>
+    <script>
+        document.getElementById('add_input').addEventListener('click', function() {
+            const container = document.getElementById('input_container');
+            const new_row = document.createElement('div');
+            new_row.className = 'input_row';
+            new_row.innerHTML = `
+                <input type="text" name="game_name" placeholder="Oyun İsmi" required>
+                <input type="number" step="0.01" name="rtp_value" placeholder="RTP Değeri" required>
+            `;
+            container.appendChild(new_row);
+        });
+    </script>
+</body>
+</html>
